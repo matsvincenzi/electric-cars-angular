@@ -18,19 +18,29 @@
 }
 
 .track {
-  --track-inset: max(var(--gutter), calc((100% - var(--container-max)) / 2));
+  --cards-per-view: 1.15;
+  --track-gap: var(--space-6);
 
   display: grid;
-  grid-auto-columns: min(78vw, 22rem);
+  grid-auto-columns: calc(
+    (100% - (var(--cards-per-view) - 1) * var(--track-gap)) / var(--cards-per-view)
+  );
   grid-auto-flow: column;
-  gap: var(--space-6);
+  gap: var(--track-gap);
   margin-top: var(--space-12);
-  padding: var(--space-2) var(--track-inset) var(--space-6);
+  padding-block: var(--space-2) var(--space-6);
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  scroll-padding-inline: var(--track-inset);
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+
+  @include from(md) {
+    --cards-per-view: 2;
+  }
+
+  @include from(lg) {
+    --cards-per-view: 3;
+  }
 
   &::-webkit-scrollbar {
     display: none;

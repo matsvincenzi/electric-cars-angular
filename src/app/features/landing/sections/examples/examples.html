@@ -40,7 +40,7 @@
     #track
     id="models-track"
     role="list"
-    class="track"
+    class="container track"
     tabindex="0"
     [attr.aria-label]="t().examples.listLabel"
   >
@@ -51,7 +51,7 @@
             class="model__image"
             [ngSrc]="'models/' + model.id"
             [ngSrcset]="imageSrcset"
-            sizes="(min-width: 48rem) 22rem, 78vw"
+            sizes="(min-width: 64rem) 24rem, (min-width: 48rem) 46vw, 85vw"
             width="640"
             height="400"
             alt=""
