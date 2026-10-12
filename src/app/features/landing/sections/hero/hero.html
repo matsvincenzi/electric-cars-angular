@@ -1,0 +1,51 @@
+<section class="hero" aria-labelledby="hero-title">
+  <img
+    class="hero__image"
+    ngSrc="hero"
+    [ngSrcset]="imageSrcset"
+    sizes="100vw"
+    fill
+    priority
+    alt=""
+  />
+  <div class="hero__veil" aria-hidden="true"></div>
+
+  <div class="container hero__content">
+    <p class="hero__eyebrow">
+      <app-icon name="zap" [size]="16" />
+      {{ t().hero.eyebrow }}
+    </p>
+
+    <h1 id="hero-title" class="hero__title">
+      {{ t().hero.titleLead }}
+      <span class="hero__accent">{{ t().hero.titleAccent }}</span>
+    </h1>
+
+    <p class="hero__lead">{{ t().hero.lead }}</p>
+
+    <div class="hero__actions">
+      <a class="button" routerLink="/" fragment="what-is">
+        {{ t().hero.primaryCta }}
+        <app-icon name="arrow-right" [size]="18" />
+      </a>
+      <a class="button button--ghost" routerLink="/" fragment="types">
+        {{ t().hero.secondaryCta }}
+      </a>
+    </div>
+
+    <div class="hero__facts">
+      <ul role="list" class="facts">
+        @for (fact of t().hero.facts; track fact.value) {
+          <li class="fact">
+            <p class="fact__value">{{ fact.value }}</p>
+            <p class="fact__label">{{ fact.label }}</p>
+          </li>
+        }
+      </ul>
+      <p class="facts__note">
+        {{ t().hero.factsNote }}
+        <a routerLink="/" [fragment]="sourcesSection">{{ t().hero.factsNoteLink }}</a>
+      </p>
+    </div>
+  </div>
+</section>

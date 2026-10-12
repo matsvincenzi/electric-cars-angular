@@ -1,0 +1,27 @@
+<section
+  id="what-is"
+  class="section"
+  tabindex="-1"
+  appTrackSection="what-is"
+  aria-labelledby="what-is-title"
+>
+  <div class="container layout">
+    <app-section-heading
+      class="heading"
+      headingId="what-is-title"
+      [eyebrow]="t().whatIs.eyebrow"
+      [title]="t().whatIs.title"
+      [lead]="t().whatIs.lead"
+    />
+
+    <ul role="list" class="pillars">
+      @for (pillar of pillars; track pillar.id) {
+        <li class="pillar">
+          <span class="pillar__icon"><app-icon [name]="pillar.icon" [size]="22" /></span>
+          <h3 class="pillar__title">{{ t().whatIs.pillars[pillar.id].title }}</h3>
+          <p class="pillar__text">{{ t().whatIs.pillars[pillar.id].text }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

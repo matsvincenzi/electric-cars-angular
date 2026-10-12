@@ -1,0 +1,108 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  color: var(--color-on-dark);
+  box-shadow: var(--shadow-lg);
+  container-type: inline-size;
+
+  @include reveal-on-scroll;
+}
+
+.side--advantages {
+  background: var(--color-night-900);
+
+  --point-accent: var(--color-spark-400);
+  --point-text: var(--color-on-dark-muted);
+}
+
+.side--challenges {
+  background: linear-gradient(160deg, var(--color-cobalt-700), #15379b);
+
+  --point-accent: #fff;
+  --point-text: rgb(255 255 255 / 0.9);
+}
+
+.side__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: var(--space-3) var(--space-3) 0;
+  overflow: hidden;
+  border-radius: calc(var(--radius-xl) - var(--space-3));
+
+  img {
+    object-fit: cover;
+  }
+
+  @container (min-width: 40rem) {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.side__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: clamp(var(--space-6), 5cqi, var(--space-10));
+}
+
+.side__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-2xl);
+}
+
+.side__badge {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.12);
+  color: var(--point-accent);
+}
+
+.points {
+  display: grid;
+  gap: var(--space-5);
+
+  @container (min-width: 34rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-8);
+  }
+}
+
+.point {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.point__icon {
+  margin-top: 0.15rem;
+  color: var(--point-accent);
+}
+
+.point__title {
+  font-size: var(--text-base);
+}
+
+.point__text {
+  margin-top: var(--space-1);
+  color: var(--point-text);
+  font-size: var(--text-sm);
+}

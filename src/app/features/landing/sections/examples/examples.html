@@ -1,0 +1,84 @@
+<section
+  id="examples"
+  class="section section--tinted examples"
+  tabindex="-1"
+  appTrackSection="examples"
+  aria-labelledby="examples-title"
+>
+  <div class="container header">
+    <app-section-heading
+      headingId="examples-title"
+      [eyebrow]="t().examples.eyebrow"
+      [title]="t().examples.title"
+      [lead]="t().examples.lead"
+    />
+    <div class="controls">
+      <button
+        type="button"
+        class="icon-button"
+        aria-controls="models-track"
+        [attr.aria-label]="t().examples.previous"
+        [disabled]="scrollState().atStart"
+        (click)="scrollByCard(-1)"
+      >
+        <app-icon name="arrow-left" />
+      </button>
+      <button
+        type="button"
+        class="icon-button"
+        aria-controls="models-track"
+        [attr.aria-label]="t().examples.next"
+        [disabled]="scrollState().atEnd"
+        (click)="scrollByCard(1)"
+      >
+        <app-icon name="arrow-right" />
+      </button>
+    </div>
+  </div>
+
+  <ul
+    #track
+    id="models-track"
+    role="list"
+    class="track"
+    tabindex="0"
+    [attr.aria-label]="t().examples.listLabel"
+  >
+    @for (model of models; track model.id) {
+      <li class="model">
+        <div class="model__media">
+          <img
+            class="model__image"
+            [ngSrc]="'models/' + model.id"
+            [ngSrcset]="imageSrcset"
+            sizes="(min-width: 48rem) 22rem, 78vw"
+            width="640"
+            height="400"
+            alt=""
+          />
+        </div>
+        <div class="model__body">
+          <ul role="list" class="model__tags">
+            <li class="tag">{{ t().examples.bodyStyles[model.bodyStyle] }}</li>
+            <li class="tag tag--accent">
+              <app-icon name="battery-charging" [size]="14" />
+              {{ t().examples.badge }}
+            </li>
+          </ul>
+          <h3 class="model__name">{{ model.name }}</h3>
+          <p class="model__text">{{ t().examples.descriptions[model.id] }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+
+  <div class="container footer">
+    <div class="progress" aria-hidden="true">
+      <span
+        class="progress__bar"
+        [style.transform]="'scaleX(' + scrollState().progress + ')'"
+      ></span>
+    </div>
+    <p class="hint">{{ t().examples.scrollHint }}</p>
+  </div>
+</section>

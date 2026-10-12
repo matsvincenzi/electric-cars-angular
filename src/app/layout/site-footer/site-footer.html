@@ -1,0 +1,59 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__intro">
+        <app-brand-mark [name]="t().brand" [homeLabel]="t().nav.home" />
+        <p class="footer__tagline">{{ t().footer.tagline }}</p>
+        <p class="footer__academic">
+          <app-icon name="graduation-cap" [size]="18" />
+          {{ t().footer.academic }}
+        </p>
+      </div>
+
+      <nav class="footer__column" aria-labelledby="footer-explore">
+        <h2 id="footer-explore" class="footer__heading">{{ t().footer.exploreTitle }}</h2>
+        <ul role="list" class="footer__links">
+          @for (id of sections; track id) {
+            <li>
+              <a routerLink="/" [fragment]="id">{{ t().nav.sections[id] }}</a>
+            </li>
+          }
+          <li>
+            <a routerLink="/" [fragment]="sourcesSection">{{ t().footer.sourcesLink }}</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="footer__column">
+        <h2 class="footer__heading">{{ t().footer.connectTitle }}</h2>
+        <ul role="list" class="footer__links">
+          @for (link of socialLinks; track link.href) {
+            <li>
+              <a
+                class="footer__social"
+                [href]="link.href"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <app-icon [name]="link.icon" [size]="18" />
+                {{ link.label }}
+                <span class="visually-hidden">{{ t().a11y.opensInNewTab }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>{{ t().footer.rights(year) }}</p>
+      <div class="footer__tools">
+        <app-language-toggle />
+        <a class="footer__top-link" [routerLink]="[]" fragment="main">
+          {{ t().footer.backToTop }}
+          <app-icon name="arrow-up" [size]="16" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

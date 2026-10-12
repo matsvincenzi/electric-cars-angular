@@ -1,0 +1,105 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-12) var(--space-16);
+
+  @include from(lg) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+  }
+}
+
+.references {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  counter-reset: reference;
+}
+
+.reference {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  padding: var(--space-5) var(--space-2);
+  border-top: 1px solid var(--color-mist-300);
+  counter-increment: reference;
+  transition: background-color var(--duration-fast) var(--ease-out);
+
+  &::before {
+    content: counter(reference, decimal-leading-zero);
+    grid-row: 1 / span 3;
+    color: var(--color-cobalt-600);
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--color-mist-300);
+  }
+
+  &:hover {
+    background: rgb(255 255 255 / 0.55);
+  }
+}
+
+.reference__topic {
+  grid-column: 2;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.reference__link {
+  grid-column: 2;
+  color: var(--color-ink-900);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+
+    &::after {
+      outline: 2px solid var(--color-focus);
+      outline-offset: -2px;
+    }
+  }
+
+  app-icon {
+    margin-left: var(--space-1);
+    vertical-align: -0.1em;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .reference:hover & {
+    color: var(--color-cobalt-700);
+
+    app-icon {
+      transform: translate(2px, -2px);
+    }
+  }
+}
+
+.reference__publisher {
+  grid-column: 2;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

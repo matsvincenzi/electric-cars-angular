@@ -1,0 +1,54 @@
+<section
+  id="how-it-works"
+  class="section section--dark how"
+  tabindex="-1"
+  appTrackSection="how-it-works"
+  aria-labelledby="how-it-works-title"
+>
+  <div class="container layout">
+    <app-section-heading
+      class="heading"
+      headingId="how-it-works-title"
+      [eyebrow]="t().howItWorks.eyebrow"
+      [title]="t().howItWorks.title"
+      [lead]="t().howItWorks.lead"
+    />
+
+    <div class="diagram">
+      <app-drivetrain-diagram [highlighted]="selected()" [label]="t().howItWorks.diagramLabel" />
+    </div>
+
+    <div class="steps-column">
+      <ol role="list" class="steps" [attr.aria-label]="t().howItWorks.stepsLabel">
+        @for (part of parts; track part.id; let index = $index) {
+          <li class="step" [class.is-active]="selected() === part.id">
+            <button
+              type="button"
+              class="step__trigger"
+              [attr.aria-pressed]="selected() === part.id"
+              (click)="select(part.id)"
+            >
+              <span class="step__index" aria-hidden="true">{{ index + 1 }}</span>
+              <app-icon class="step__icon" [name]="part.icon" [size]="18" />
+              <span class="step__title">{{ t().howItWorks.parts[part.id].title }}</span>
+            </button>
+            <p class="step__text">{{ t().howItWorks.parts[part.id].text }}</p>
+          </li>
+        }
+      </ol>
+
+      <aside class="regen">
+        <app-icon name="recycle" [size]="20" />
+        <div>
+          <h3 class="regen__title">{{ t().howItWorks.regeneration.title }}</h3>
+          <p class="regen__text">{{ t().howItWorks.regeneration.text }}</p>
+        </div>
+      </aside>
+
+      <a class="next-link" routerLink="/" fragment="types">
+        {{ t().howItWorks.nextCta }}
+        <app-icon name="arrow-right" [size]="18" />
+      </a>
+    </div>
+  </div>
+</section>

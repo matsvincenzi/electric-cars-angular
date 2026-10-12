@@ -1,0 +1,25 @@
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container-max));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-block);
+  scroll-margin-top: var(--header-height);
+}
+
+.section--dark {
+  background: var(--color-night-900);
+  color: var(--color-on-dark);
+
+  --color-text-muted: var(--color-on-dark-muted);
+  --color-hairline: var(--color-on-dark-hairline);
+  --color-focus: var(--color-focus-on-dark);
+  --color-link: var(--color-spark-300);
+  --color-accent: var(--color-spark-400);
+}
+
+.section--tinted {
+  background: var(--color-mist-100);
+}

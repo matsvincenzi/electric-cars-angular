@@ -1,0 +1,128 @@
+<section
+  id="types"
+  class="section types"
+  tabindex="-1"
+  appTrackSection="types"
+  aria-labelledby="types-title"
+>
+  <div class="container">
+    <app-section-heading
+      headingId="types-title"
+      [eyebrow]="t().types.eyebrow"
+      [title]="t().types.title"
+      [lead]="t().types.lead"
+    />
+
+    <div class="explorer">
+      <div
+        class="tablist"
+        role="tablist"
+        aria-orientation="horizontal"
+        [attr.aria-label]="t().types.tablistLabel"
+      >
+        @for (type of types; track type.id) {
+          <button
+            #tab
+            type="button"
+            role="tab"
+            class="tab"
+            [id]="'type-tab-' + type.id"
+            [attr.aria-selected]="type.id === selectedId()"
+            [attr.aria-controls]="'type-panel-' + type.id"
+            [tabIndex]="type.id === selectedId() ? 0 : -1"
+            (click)="select(type.id)"
+            (keydown)="onTabKeydown($event)"
+          >
+            <span class="tab__acronym">{{ type.acronym }}</span>
+            <span class="visually-hidden">, </span>
+            <span class="tab__summary">{{ t().types.items[type.id].summary }}</span>
+            <span class="meter" aria-hidden="true">
+              @for (level of driveLevels; track level) {
+                <span
+                  class="meter__bar"
+                  [class.is-on]="isLevelReached(level, type.electricDrive)"
+                ></span>
+              }
+            </span>
+          </button>
+        }
+      </div>
+
+      @for (type of types; track type.id) {
+        @let copy = t().types.items[type.id];
+        <div
+          class="panel"
+          role="tabpanel"
+          tabindex="0"
+          [id]="'type-panel-' + type.id"
+          [attr.aria-labelledby]="'type-tab-' + type.id"
+          [hidden]="type.id !== selectedId()"
+        >
+          <div class="panel__intro">
+            <span class="panel__icon"><app-icon [name]="type.icon" [size]="26" /></span>
+            <h3 class="panel__title">
+              <span class="panel__acronym">{{ type.acronym }}</span>
+              {{ copy.name }}
+            </h3>
+            <p class="panel__description">{{ copy.description }}</p>
+
+            <div class="drive">
+              <span class="drive__label">{{ t().types.electricDrive.label }}</span>
+              <span class="visually-hidden">: </span>
+              <span class="meter meter--large" aria-hidden="true">
+                @for (level of driveLevels; track level) {
+                  <span
+                    class="meter__bar"
+                    [class.is-on]="isLevelReached(level, type.electricDrive)"
+                  ></span>
+                }
+              </span>
+              <strong class="drive__value">{{
+                t().types.electricDrive.levels[type.electricDrive]
+              }}</strong>
+            </div>
+          </div>
+
+          <dl class="specs">
+            <div class="spec">
+              <dt>{{ t().types.attributes.energySources }}</dt>
+              <dd>
+                <ul role="list" class="chips">
+                  @for (source of type.energySources; track source) {
+                    <li class="chip" [attr.data-source]="source">
+                      {{ t().types.energySources[source] }}
+                    </li>
+                  }
+                </ul>
+              </dd>
+            </div>
+            <div class="spec">
+              <dt>{{ t().types.attributes.plugsIn }}</dt>
+              <dd class="spec__boolean" [class.is-yes]="type.plugsIn">
+                <app-icon [name]="type.plugsIn ? 'check' : 'x'" [size]="16" />
+                {{ type.plugsIn ? t().types.yes : t().types.no }}
+              </dd>
+            </div>
+            <div class="spec">
+              <dt>{{ t().types.attributes.tailpipe }}</dt>
+              <dd>{{ copy.tailpipe }}</dd>
+            </div>
+            <div class="spec">
+              <dt>{{ t().types.attributes.refuel }}</dt>
+              <dd>{{ copy.refuel }}</dd>
+            </div>
+            <div class="spec">
+              <dt>{{ t().types.attributes.bestFor }}</dt>
+              <dd>{{ copy.bestFor }}</dd>
+            </div>
+          </dl>
+        </div>
+      }
+    </div>
+
+    <a class="next-link" routerLink="/" fragment="examples">
+      {{ t().types.nextCta }}
+      <app-icon name="arrow-right" [size]="18" />
+    </a>
+  </div>
+</section>

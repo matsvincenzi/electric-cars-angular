@@ -1,0 +1,76 @@
+<section
+  id="pros-cons"
+  class="section"
+  tabindex="-1"
+  appTrackSection="pros-cons"
+  aria-labelledby="pros-cons-title"
+>
+  <div class="container">
+    <app-section-heading
+      headingId="pros-cons-title"
+      [eyebrow]="t().prosCons.eyebrow"
+      [title]="t().prosCons.title"
+      [lead]="t().prosCons.lead"
+    />
+
+    <div class="ledger">
+      <article class="side side--advantages" aria-labelledby="advantages-title">
+        <div class="side__media">
+          <img
+            ngSrc="interior"
+            [ngSrcset]="interiorSrcset"
+            sizes="(min-width: 64rem) 36rem, 92vw"
+            fill
+            [alt]="t().prosCons.interiorAlt"
+          />
+        </div>
+        <div class="side__body">
+          <h3 id="advantages-title" class="side__title">
+            <span class="side__badge"><app-icon name="check" [size]="18" /></span>
+            {{ t().prosCons.advantagesTitle }}
+          </h3>
+          <ul role="list" class="points">
+            @for (item of advantages; track item.id) {
+              <li class="point">
+                <app-icon class="point__icon" [name]="item.icon" [size]="20" />
+                <div>
+                  <h4 class="point__title">{{ t().prosCons.advantages[item.id].title }}</h4>
+                  <p class="point__text">{{ t().prosCons.advantages[item.id].text }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </article>
+
+      <article class="side side--challenges" aria-labelledby="challenges-title">
+        <div class="side__media">
+          <img
+            ngSrc="charging"
+            [ngSrcset]="chargingSrcset"
+            sizes="(min-width: 64rem) 36rem, 92vw"
+            fill
+            [alt]="t().prosCons.chargingAlt"
+          />
+        </div>
+        <div class="side__body">
+          <h3 id="challenges-title" class="side__title">
+            <span class="side__badge"><app-icon name="circle-alert" [size]="18" /></span>
+            {{ t().prosCons.challengesTitle }}
+          </h3>
+          <ul role="list" class="points">
+            @for (item of challenges; track item.id) {
+              <li class="point">
+                <app-icon class="point__icon" [name]="item.icon" [size]="20" />
+                <div>
+                  <h4 class="point__title">{{ t().prosCons.challenges[item.id].title }}</h4>
+                  <p class="point__text">{{ t().prosCons.challenges[item.id].text }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

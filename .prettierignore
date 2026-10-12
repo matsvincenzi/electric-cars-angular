@@ -1,0 +1,10 @@
+dist
+.angular
+coverage
+out-tsc
+playwright-report
+test-results
+node_modules
+package-lock.json
+public/icons.svg
+public/flags

@@ -1,0 +1,15 @@
+<div class="toggle" role="group" [attr.aria-label]="label()">
+  @for (option of options; track option.locale) {
+    <button
+      type="button"
+      class="option"
+      [attr.lang]="option.locale"
+      [attr.aria-pressed]="option.locale === locale()"
+      (click)="select(option.locale)"
+    >
+      <app-flag [code]="option.flag" />
+      <span class="code">{{ option.code }}</span>
+      <span class="visually-hidden">, {{ option.endonym }}</span>
+    </button>
+  }
+</div>

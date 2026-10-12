@@ -1,0 +1,29 @@
+<section
+  class="section section--tinted"
+  tabindex="-1"
+  aria-labelledby="sources-title"
+  [id]="sectionId"
+>
+  <div class="container layout">
+    <app-section-heading
+      headingId="sources-title"
+      [eyebrow]="t().sources.eyebrow"
+      [title]="t().sources.title"
+      [lead]="t().sources.lead"
+    />
+
+    <ol class="references">
+      @for (source of sources; track source.id) {
+        <li class="reference">
+          <p class="reference__topic">{{ t().sources.topics[source.id] }}</p>
+          <a class="reference__link" [href]="source.url" target="_blank" rel="noopener noreferrer">
+            {{ source.title }}
+            <app-icon name="arrow-up-right" [size]="16" />
+            <span class="visually-hidden">{{ t().a11y.opensInNewTab }}</span>
+          </a>
+          <p class="reference__publisher">{{ source.publisher }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

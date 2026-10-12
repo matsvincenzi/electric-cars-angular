@@ -1,0 +1,156 @@
+:host {
+  display: block;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.wheels rect {
+  fill: #050a18;
+  stroke: rgb(238 243 252 / 0.14);
+}
+
+.body {
+  fill: var(--color-night-800);
+  stroke: rgb(238 243 252 / 0.22);
+  stroke-width: 1.5;
+}
+
+.cabin {
+  fill: rgb(107 151 255 / 0.05);
+  stroke: rgb(238 243 252 / 0.1);
+  stroke-dasharray: 4 6;
+}
+
+.axle {
+  stroke: rgb(238 243 252 / 0.16);
+  stroke-width: 3;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+}
+
+.axle--driven {
+  stroke-dasharray: none;
+  transition: stroke var(--duration-base) var(--ease-out);
+
+  &[data-state='active'] {
+    stroke: var(--color-spark-400);
+  }
+}
+
+.light--front {
+  fill: var(--color-spark-300);
+  opacity: 0.85;
+}
+
+.light--rear {
+  fill: #ff6b81;
+  opacity: 0.7;
+}
+
+.flow {
+  fill: none;
+  stroke: var(--color-cobalt-400);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 5 6;
+  transition: stroke var(--duration-base) var(--ease-out);
+
+  &[data-state='active'] {
+    stroke: var(--color-spark-400);
+    stroke-dasharray: none;
+  }
+}
+
+.part {
+  > rect,
+  > circle:not(.badge, .detail) {
+    fill: var(--color-night-700);
+    stroke: rgb(238 243 252 / 0.32);
+    stroke-width: 1.5;
+    transition:
+      fill var(--duration-base) var(--ease-out),
+      stroke var(--duration-base) var(--ease-out),
+      filter var(--duration-base) var(--ease-out);
+  }
+
+  .cell {
+    fill: rgb(107 151 255 / 0.16);
+    stroke: none;
+  }
+
+  .detail {
+    fill: none;
+    stroke: rgb(238 243 252 / 0.55);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .badge {
+    fill: var(--color-night-900);
+    stroke: rgb(238 243 252 / 0.4);
+    transition:
+      fill var(--duration-base) var(--ease-out),
+      stroke var(--duration-base) var(--ease-out);
+  }
+
+  .badge-label {
+    fill: var(--color-on-dark);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 800;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  &[data-state='active'] {
+    > rect,
+    > circle:not(.badge, .detail) {
+      fill: rgb(92 225 230 / 0.14);
+      stroke: var(--color-spark-400);
+      filter: drop-shadow(0 0 10px rgb(92 225 230 / 0.55));
+    }
+
+    .cell {
+      fill: rgb(92 225 230 / 0.42);
+    }
+
+    .detail {
+      stroke: var(--color-spark-300);
+    }
+
+    .badge {
+      fill: var(--color-spark-400);
+      stroke: var(--color-spark-400);
+    }
+
+    .badge-label {
+      fill: var(--color-night-950);
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .flows {
+      animation: power-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+  }
+}
+
+@keyframes power-up {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

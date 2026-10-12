@@ -1,0 +1,83 @@
+<header class="header" [class.is-solid]="scrolled() || menuOpen()">
+  <div class="container bar">
+    <app-brand-mark [name]="t().brand" [homeLabel]="t().nav.home" />
+
+    <nav class="desktop-nav" [attr.aria-label]="t().nav.ariaLabel">
+      <ul role="list" class="desktop-nav__list">
+        @for (id of sections; track id) {
+          <li>
+            <a
+              class="desktop-nav__link"
+              routerLink="/"
+              [fragment]="id"
+              [class.is-active]="activeSection() === id"
+              [attr.aria-current]="activeSection() === id ? 'location' : null"
+              >{{ t().nav.sections[id] }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <app-language-toggle class="desktop-only" />
+      <button
+        type="button"
+        class="menu-button"
+        aria-controls="mobile-menu"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="t().nav.openMenu"
+        (click)="openMenu()"
+      >
+        <app-icon name="menu" [size]="22" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<dialog
+  #menu
+  id="mobile-menu"
+  class="mobile-menu"
+  closedby="any"
+  [attr.aria-label]="t().nav.menuTitle"
+  (close)="onMenuClosed()"
+>
+  <div class="mobile-menu__panel">
+    <div class="mobile-menu__top">
+      <app-brand-mark [name]="t().brand" [homeLabel]="t().nav.home" (click)="closeMenu()" />
+      <button
+        type="button"
+        class="menu-button"
+        [attr.aria-label]="t().nav.closeMenu"
+        (click)="closeMenu()"
+      >
+        <app-icon name="x" [size]="22" />
+      </button>
+    </div>
+
+    <nav [attr.aria-label]="t().nav.ariaLabel">
+      <ol role="list" class="mobile-menu__list">
+        @for (id of sections; track id; let index = $index) {
+          <li>
+            <a
+              class="mobile-menu__link"
+              routerLink="/"
+              [fragment]="id"
+              [attr.aria-current]="activeSection() === id ? 'location' : null"
+              (click)="closeMenu()"
+            >
+              <span class="mobile-menu__index" aria-hidden="true">0{{ index + 1 }}</span>
+              {{ t().nav.sections[id] }}
+            </a>
+          </li>
+        }
+      </ol>
+    </nav>
+
+    <div class="mobile-menu__footer">
+      <p class="mobile-menu__label">{{ t().language.label }}</p>
+      <app-language-toggle />
+    </div>
+  </div>
+</dialog>

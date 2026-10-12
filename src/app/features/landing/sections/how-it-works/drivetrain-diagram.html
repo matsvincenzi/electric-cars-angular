@@ -1,0 +1,65 @@
+<svg viewBox="0 0 640 360" role="img" [attr.aria-label]="label()">
+  <g class="wheels">
+    <rect x="104" y="30" width="92" height="40" rx="14" />
+    <rect x="104" y="290" width="92" height="40" rx="14" />
+    <rect x="470" y="30" width="92" height="40" rx="14" />
+    <rect x="470" y="290" width="92" height="40" rx="14" />
+  </g>
+
+  <path
+    class="body"
+    d="M128 54C76 54 44 86 44 132v96c0 46 32 78 84 78h380c58 0 96-34 96-84v-84c0-50-38-84-96-84z"
+  />
+  <rect class="cabin" x="214" y="82" width="236" height="196" rx="46" />
+
+  <path class="axle" d="M150 70v220" />
+  <path class="axle axle--driven" [attr.data-state]="stateOf('motor')" d="M516 70v220" />
+
+  <rect class="light light--front" x="592" y="94" width="6" height="40" rx="3" />
+  <rect class="light light--front" x="592" y="226" width="6" height="40" rx="3" />
+  <rect class="light light--rear" x="49" y="98" width="5" height="34" rx="2.5" />
+  <rect class="light light--rear" x="49" y="228" width="5" height="34" rx="2.5" />
+
+  <g class="flows">
+    <path class="flow" [attr.data-state]="stateOf('onboard-charger')" d="M86 104h59v42" />
+    <path class="flow" [attr.data-state]="stateOf('battery')" d="M178 180h28" />
+    <path class="flow" [attr.data-state]="stateOf('inverter')" d="M434 180h12" />
+    <path class="flow" [attr.data-state]="stateOf('motor')" d="M482 180h10" />
+  </g>
+
+  <g class="part" [attr.data-state]="stateOf('charge-port')">
+    <rect x="58" y="92" width="28" height="24" rx="6" />
+    <circle class="badge" cx="72" cy="150" r="15" />
+    <text class="badge-label" x="72" y="150">1</text>
+  </g>
+
+  <g class="part" [attr.data-state]="stateOf('onboard-charger')">
+    <rect x="112" y="146" width="66" height="68" rx="12" />
+    <path class="detail" d="M134 172l10 8-10 8m14 0h12" />
+    <circle class="badge" cx="145" cy="236" r="15" />
+    <text class="badge-label" x="145" y="236">2</text>
+  </g>
+
+  <g class="part" [attr.data-state]="stateOf('battery')">
+    <rect x="206" y="110" width="228" height="140" rx="18" />
+    @for (cell of batteryCells; track $index) {
+      <rect class="cell" [attr.x]="cell.x" [attr.y]="cell.y" width="27" height="32" rx="5" />
+    }
+    <circle class="badge" cx="320" cy="276" r="15" />
+    <text class="badge-label" x="320" y="276">3</text>
+  </g>
+
+  <g class="part" [attr.data-state]="stateOf('inverter')">
+    <rect x="446" y="154" width="36" height="52" rx="8" />
+    <path class="detail" d="M456 186c4-10 8-10 12 0" />
+    <circle class="badge" cx="464" cy="232" r="15" />
+    <text class="badge-label" x="464" y="232">4</text>
+  </g>
+
+  <g class="part" [attr.data-state]="stateOf('motor')">
+    <circle cx="516" cy="180" r="24" />
+    <circle class="detail" cx="516" cy="180" r="9" />
+    <circle class="badge" cx="548" cy="232" r="15" />
+    <text class="badge-label" x="548" y="232">5</text>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<section class="not-found" aria-labelledby="not-found-title">
+  <div class="container content">
+    <p class="code" aria-hidden="true">404</p>
+    <p class="eyebrow">{{ t().notFound.eyebrow }}</p>
+    <h1 id="not-found-title" class="title">{{ t().notFound.title }}</h1>
+    <p class="text">{{ t().notFound.text }}</p>
+    <a class="button" routerLink="/">
+      <app-icon name="arrow-left" [size]="18" />
+      {{ t().notFound.cta }}
+    </a>
+  </div>
+</section>
