@@ -20,6 +20,11 @@ const SOCIAL_LINKS: readonly SocialLink[] = [
   { label: 'Discord', href: 'https://discord.gg/NvsmEv4kC5', icon: 'discord' },
 ];
 
+const UNIVERSITY = {
+  name: 'Universidade Católica de Brasília',
+  href: 'https://ucb.catolica.edu.br/',
+} as const;
+
 @Component({
   selector: 'app-site-footer',
   imports: [RouterLink, BrandMark, Icon, LanguageToggle],
@@ -32,5 +37,6 @@ export class SiteFooter {
   protected readonly sections = LANDING_SECTIONS;
   protected readonly sourcesSection = SOURCES_SECTION;
   protected readonly socialLinks = SOCIAL_LINKS;
+  protected readonly university = UNIVERSITY;
   protected readonly year = new Date().getFullYear();
 }

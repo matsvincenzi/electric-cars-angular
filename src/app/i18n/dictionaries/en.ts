@@ -269,7 +269,7 @@ export const EN: Messages = {
     exploreTitle: 'Explore',
     connectTitle: 'Connect',
     sourcesLink: 'Sources',
-    academic: 'Academic project · Universidade Católica de Brasília',
+    academic: 'Academic project ·',
     rights: (year) => `© ${year} Mateus Vincenzi. All rights reserved.`,
     backToTop: 'Back to top',
   },

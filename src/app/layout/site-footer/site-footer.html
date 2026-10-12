@@ -6,7 +6,13 @@
         <p class="footer__tagline">{{ t().footer.tagline }}</p>
         <p class="footer__academic">
           <app-icon name="graduation-cap" [size]="18" />
-          {{ t().footer.academic }}
+          <span>
+            {{ t().footer.academic }}
+            <a [href]="university.href" target="_blank" rel="noopener noreferrer"
+              >{{ university.name
+              }}<span class="visually-hidden"> {{ t().a11y.opensInNewTab }}</span></a
+            >
+          </span>
         </p>
       </div>
 

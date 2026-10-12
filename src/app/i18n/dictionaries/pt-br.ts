@@ -270,7 +270,7 @@ export const PT_BR: Messages = {
     exploreTitle: 'Explorar',
     connectTitle: 'Contato',
     sourcesLink: 'Fontes',
-    academic: 'Projeto acadêmico · Universidade Católica de Brasília',
+    academic: 'Projeto acadêmico ·',
     rights: (year) => `© ${year} Mateus Vincenzi. Todos os direitos reservados.`,
     backToTop: 'Voltar ao topo',
   },
